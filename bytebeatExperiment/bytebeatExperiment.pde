@@ -94,6 +94,8 @@ void keyPressed(){
 
   if(key=='a'||key=='s'||key=='k'||key=='l'){
     formula = formula+key+"";
+  }else if(key >= 'a' && key <= 'z'){
+    formula = formula+key+"";
   }
 
   if(keyCode==BACKSPACE)
@@ -125,6 +127,8 @@ void parse(){
       case 'l':
         step+=0.01;
         break;
+      default:
+        s+=((float)(formula.charAt(t%formula.length()))-97)/32.0-0.5;
     }
 
     if(s>1.0)
