@@ -1,3 +1,26 @@
+/**
+Coded by Kof @ 
+Sun Jun  1 17:28:58 CEST 2014
+
+
+
+   ,dPYb,                  ,dPYb,
+   IP'`Yb                  IP'`Yb
+   I8  8I                  I8  8I
+   I8  8bgg,               I8  8'
+   I8 dP" "8    ,ggggg,    I8 dP
+   I8d8bggP"   dP"  "Y8ggg I8dP
+   I8P' "Yb,  i8'    ,8I   I8P
+  ,d8    `Yb,,d8,   ,d8'  ,d8b,_
+  88P      Y8P"Y8888P"    PI8"8888
+                           I8 `8,
+                           I8  `8,
+                           I8   8I
+                           I8   8I
+                           I8, ,8'
+                            "Y8P'
+*/
+
 import ddf.minim.*;
 import ddf.minim.ugens.*;
 
@@ -20,7 +43,7 @@ void setup(){
 
   textFont(loadFont("SempliceRegular-8.vlw"));
   textLeading(9);
-  
+
   noSmooth();
 
   minim = new Minim(this);
@@ -63,7 +86,7 @@ void draw(){
   }
   endShape();
 
-      parse();
+  parse();
 
 }
 
@@ -78,9 +101,9 @@ void keyPressed(){
       formula = formula.substring(0,formula.length()-1);
 
   if(keyCode==DELETE)
-      formula = formula.substring(0,1);
-      
-      
+    formula = formula.substring(0,1);
+
+
 
 }
 
@@ -89,26 +112,26 @@ void parse(){
   float step = 0.1;
   for(int t = 0 ; t < BUFFER_SIZE;t++){
 
-      switch(formula.charAt(t%formula.length())){
-        case 'a':
-          step-=0.01;
-          break;
-        case 's':
-          s+=step;
-          break;
-        case 'k':
-          s-=step;
-          break;
-        case 'l':
-          step+=0.01;
-          break;
-      }
+    switch(formula.charAt(t%formula.length())){
+      case 'a':
+        step-=0.01;
+        break;
+      case 's':
+        s+=step;
+        break;
+      case 'k':
+        s-=step;
+        break;
+      case 'l':
+        step+=0.01;
+        break;
+    }
 
-      if(s>1.0)
-        s=-1.0;
-      if(s<-1.0)
-        s=1.0;
-    
+    if(s>1.0)
+      s=-1.0;
+    if(s<-1.0)
+      s=1.0;
+
     raw[t] += (s-raw[t])/10.0;
     buffer.setSample(0,t,raw[t]);
   }
